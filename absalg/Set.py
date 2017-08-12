@@ -11,6 +11,11 @@ class Set(frozenset):
     1) it makes Set immutable
     2) it allows Set to contains Sets
     """
+    def __sub__(self, other):
+        if not isinstance(other, Set):
+            raise TypeError("One of the objects is not a set")
+        return Set(super().__sub__(other))
+
     def __mul__(self, other):
         """Cartesian product"""
         if not isinstance(other, Set):

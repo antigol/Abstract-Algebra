@@ -1,6 +1,3 @@
-import Set
-from Set import *
-import Function
-from Function import *
-import Group
-from Group import *
+from absalg.Set import *
+from absalg.Function import *
+from absalg.Group import *

@@ -1,5 +1,5 @@
 This package attempts to implemenent finite abstract algebra in python.
-It is written by Naftali Harris and licensed under the GNU General Public 
+It is written by Naftali Harris and licensed under the GNU General Public
 License, Version 3.
 
 INSTALLATION
@@ -11,12 +11,12 @@ INSTALLATION
 USAGE
 =====
 
-    $ python 
-    Python 2.7.2+ (default, Oct  4 2011, 20:03:08) 
-    [GCC 4.6.1] on linux2
+    $ python3
+    Python 3.5.3 (default, Jan 19 2017, 14:11:04)
+    [GCC 6.3.0 20170118] on linux
     Type "help", "copyright", "credits" or "license" for more information.
-    >>> from absalg import * 
-    >>> print Zn(2) * Zn(2) 
+    >>> from absalg import *
+    >>> print(Zn(2) * Zn(2))
     e: (0, 0)
     a: (0, 1)
     b: (1, 0)

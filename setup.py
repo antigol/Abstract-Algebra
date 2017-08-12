@@ -1,6 +1,6 @@
 # Setup script
 
-from distutils.core import setup
+from setuptools import setup
 
 setup(name='absalg',
       version='0.0.1',

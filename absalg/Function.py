@@ -2,7 +2,7 @@
 Definition of a function
 """
 
-from Set import Set
+from absalg.Set import Set
 
 class Function:
     """Definition of a finite function"""
@@ -35,12 +35,12 @@ class Function:
         # Need to be a little careful, since self.domain and self.codomain are
         # often the same, and we don't want to cancel out their hashes by xoring
         # them against each other.
-        # 
-        # Also, functions we consider equal, like lambda x: x + 1, and 
-        # def jim(x): return x + 1, have different hashes, so we can't include 
+        #
+        # Also, functions we consider equal, like lambda x: x + 1, and
+        # def jim(x): return x + 1, have different hashes, so we can't include
         # the hash of self.function.
         #
-        # Finally, we should make sure that if you switch the domain and 
+        # Finally, we should make sure that if you switch the domain and
         # codomain, the hash will (usually) change, so you can't just add or
         # multiply the hashes together.
 

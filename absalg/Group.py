@@ -2,13 +2,13 @@
 
 import itertools
 
-from Set import Set
-from Function import Function
+from absalg.Set import Set
+from absalg.Function import Function
 
 class GroupElem:
     """
     Group element definition
-    
+
     This is mainly syntactic sugar, so you can write stuff like g * h
     instead of group.bin_op(g, h), or group(g, h).
     """
@@ -45,7 +45,7 @@ class GroupElem:
         If other is a group element, returns self * other.
         If other = n is an int, and self is in an abelian group, returns self**n
         """
-        if self.group.is_abelian() and isinstance(other, (int, long)):
+        if self.group.is_abelian() and isinstance(other, int):
             return self ** other
 
         if not isinstance(other, GroupElem):
@@ -65,7 +65,7 @@ class GroupElem:
         If other is a group element, returns other * self.
         If other = n is an int, and self is in an abelian group, returns self**n
         """
-        if self.group.is_abelian() and isinstance(other, (int, long)):
+        if self.group.is_abelian() and isinstance(other, int):
             return self ** other
 
         if not isinstance(other, GroupElem):
@@ -79,14 +79,14 @@ class GroupElem:
         if self.group.is_abelian():
             return self * other
         raise TypeError("not an element of an abelian group")
-        
+
     def __pow__(self, n, modulo=None):
         """
         Returns self**n
-        
+
         modulo is included as an argument to comply with the API, and ignored
         """
-        if not isinstance(n, (int, long)):
+        if not isinstance(n, int):
             raise TypeError("n must be an int or a long")
 
         if n == 0:
@@ -186,7 +186,7 @@ class Group:
 
     def __str__(self):
         """Returns the Cayley table"""
-        
+
         letters = "eabcdfghijklmnopqrstuvwxyz"
         if len(self) > len(letters):
             return "This group is too big to print a Cayley table"
@@ -269,7 +269,7 @@ class Group:
 
         If any of the items aren't already GroupElems, we will try to convert
         them to GroupElems before continuing.
-        
+
         elems must be iterable
         """
 
@@ -344,7 +344,7 @@ class Group:
         A = self.generators()
         for B in itertools.permutations(other, len(A)):
 
-            func = dict(itertools.izip(A, B)) # the mapping
+            func = dict(zip(A, B)) # the mapping
             counterexample = False
             while not counterexample:
 
@@ -356,12 +356,12 @@ class Group:
                         if func[g] * func[h] != func[g * h]:
                             counterexample = True
                             break
-                    else: 
+                    else:
                         noobs[g * h] = func[g] * func[h]
 
                 # If we've mapped all the elements of self, then it's a
                 # homomorphism provided we haven't seen any counterexamples.
-                if len(func) == len(self): 
+                if len(func) == len(self):
                     break
 
                 # Make sure there aren't any collisions before updating
@@ -383,8 +383,8 @@ class Group:
 class GroupHomomorphism(Function):
     """
     The definition of a Group Homomorphism
-    
-    A GroupHomomorphism is a Function between Groups that obeys the group 
+
+    A GroupHomomorphism is a Function between Groups that obeys the group
     homomorphism axioms.
     """
 
@@ -434,7 +434,7 @@ def Sn(n):
 
 def Dn(n):
     """Returns the dihedral group of order 2n """
-    G = Set("%s%d" % (l, x) for l in "RS" for x in xrange(n))
+    G = Set("%s%d" % (l, x) for l in "RS" for x in range(n))
     def multiply_symmetries(x):
         l1, l2 = x[0][0], x[1][0]
         x1, x2 = int(x[0][1:]), int(x[1][1:])
@@ -449,4 +449,3 @@ def Dn(n):
             else:
                 return "R%d" % ((x1 - x2) % n)
     return Group(G, Function(G * G, G, multiply_symmetries))
-

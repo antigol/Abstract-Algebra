@@ -5,7 +5,7 @@ Implementation of Set
 class Set(frozenset):
     """
     Definition of a Set
-    
+
     It's important that Set be a subclass of frozenset, (not set), because:
     1) it makes Set immutable
     2) it allows Set to contains Sets

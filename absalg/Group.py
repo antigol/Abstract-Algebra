@@ -23,7 +23,7 @@ class GroupElem:
         self.group = group
 
     def __repr__(self):
-        return str(self.elem)
+        return "GroupElem({})".format(self.elem)
 
     def __str__(self):
         return str(self.elem)
@@ -191,7 +191,7 @@ class Group:
         return len(self.Set)
 
     def __repr__(self):
-        return repr(self.group_elems)
+        return "Group({})".format(self.group_elems)
 
     def __str__(self):
         """Returns the Cayley table"""

@@ -1,3 +1,4 @@
+# pylint: disable=C, R
 """Group implementation"""
 
 import itertools
@@ -80,7 +81,7 @@ class GroupElem:
             return self * other
         raise TypeError("not an element of an abelian group")
 
-    def __pow__(self, n, modulo=None):
+    def __pow__(self, n, modulo=None): # pylint: disable=W
         """
         Returns self**n
 
@@ -137,8 +138,10 @@ class Group:
 
         # Find the identity
         found_id = False
-        for e in G:
-            if all(bin_op((e, a)) == a for a in G):
+        e = None
+        for a in G:
+            if all(bin_op((a, b)) == b for b in G):
+                e = a
                 found_id = True
                 break
         if not found_id:
@@ -388,7 +391,7 @@ class GroupHomomorphism(Function):
     homomorphism axioms.
     """
 
-    def __init__(self, domain, codomain, function):
+    def __init__(self, domain, codomain, function): # pylint: disable=W
         """Check types and the homomorphism axioms; records the two groups"""
 
         if not isinstance(domain, Group):

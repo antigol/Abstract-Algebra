@@ -1,3 +1,4 @@
+# pylint: disable=C
 """
 Definition of a function
 """

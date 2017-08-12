@@ -1,3 +1,4 @@
+# pylint: disable=C, R
 """
 Implementation of Set
 """
@@ -23,4 +24,4 @@ class Set(frozenset):
             raise KeyError("This is an empty set")
 
         for item in self: break
-        return item
+        return item # pylint: disable=W

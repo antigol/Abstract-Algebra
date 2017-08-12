@@ -71,6 +71,9 @@ class Function:
         """
         return self._image()
 
+    def __repr__(self):
+        return str(self)
+
     def __str__(self):
         """Pretty outputing of functions"""
 
@@ -80,7 +83,7 @@ class Function:
         formatstr2 = "{0:<%d}{1}\n" % (maxlen + 4)
         nothit = self.codomain - self._image()
 
-        return("".join(formatstr1.format(x, self(x)) for x in self.domain) + \
+        return("".join(formatstr1.format(str(x), self(x)) for x in self.domain) + \
                "".join(formatstr2.format("", y) for y in nothit))
 
     def is_surjective(self):
